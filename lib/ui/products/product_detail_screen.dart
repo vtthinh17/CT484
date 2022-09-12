@@ -48,8 +48,8 @@ class ProductDetailScreen extends StatelessWidget{
             ),
 
           ],
-        )
         ),
-    )
+        ),
+    );
   }
 }
