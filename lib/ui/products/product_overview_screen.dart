@@ -54,7 +54,7 @@ class _ProductsOverviewScreen extends State<ProductsOverviewScreen> {
         child: Text('Only Favorites')),
       const PopupMenuItem(
         value: FilterOptions.all,
-        child: Text('Showw All')),
+        child: Text('Show All')),
     ]
     );  
   }

@@ -37,7 +37,7 @@ class UserProductListTile extends StatelessWidget{
   Widget buildDeleteButton(BuildContext context){
     return IconButton(
       onPressed: () async {print('Delete a product');},
-      icon: const Icon(Icons.edit),
+      icon: const Icon(Icons.delete),
       color: Theme.of(context).errorColor
       );
   }
