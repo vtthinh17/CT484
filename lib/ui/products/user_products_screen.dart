@@ -1,3 +1,5 @@
+// import 'dart:js';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'user_product_list_tile.dart';
 import 'products_manager.dart';
@@ -7,7 +9,7 @@ class UserProductsScreen extends StatelessWidget{
   static const routeName = '/user-products';
   @override
   Widget build(BuildContext context){
-    final productsManager = ProductsManager();
+    // final productsManager = ProductsManager();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Products'),
@@ -18,21 +20,25 @@ class UserProductsScreen extends StatelessWidget{
       drawer: const AppDrawer(),
       body: RefreshIndicator(
         onRefresh: () async => print('refresh products'),
-        child: buildUserProductListView(productsManager),
+        child: buildUserProductListView(),
       ),
     );
   }
 
-  Widget buildUserProductListView(ProductsManager productsManager){
-    return ListView.builder(
-      itemCount: productsManager.itemCount,
-      itemBuilder: (ctx,i) => Column(
-        children: [
-          UserProductListTile(productsManager.items[i]),
-          const Divider()
-        ],  
-      )
-      );
+  Widget buildUserProductListView(){
+    return Consumer<ProductsManager>(
+      builder:(context, productsManager, child){
+        return ListView.builder(
+          itemCount: productsManager.itemCount,
+          itemBuilder: ((context, index) => Column(
+            children: [ 
+              UserProductListTile(productsManager.items[index]),
+              const Divider()
+            ],
+          )),
+        );
+      },
+    );
   }
 
   Widget buildAddButton(){
@@ -42,3 +48,4 @@ class UserProductsScreen extends StatelessWidget{
       );
   }
 }
+
