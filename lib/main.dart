@@ -32,14 +32,15 @@ class MyApp extends StatelessWidget {
           CartScreen.routeName:(context) => const CartScreen(),
           OrdersScreen.routeName:(context) => const OrdersScreen(),
           UserProductsScreen.routeName:(context) => const UserProductsScreen(),
-
         },
         onGenerateRoute: (settings){
-          if (settings.name == ProductDetailScreen.routeName){
-            final productId = settings.arguments as String;
+          if (settings.name == EditProductScreen.routeName){
+            final productId = settings.arguments as String?;
             return MaterialPageRoute(builder: (context){
-              return ProductDetailScreen(
-                context.read<ProductsManager>().findByID(productId)
+              return EditProductScreen(
+                productId != null
+                ?context.read<ProductsManager>().findByID(productId)
+                :null
               );
             });
           }
